@@ -1,4 +1,3 @@
-from os import sep
 class Zlomok:
 
   def __init__(self, cit, men):
@@ -53,7 +52,7 @@ class Zlomok:
     m = self.__menovatel == iny.get_menovatel()
     return c and m
 
-  # chýba <, >, <=, >=, !=
+  # chýba < (__lt__), > (__gt__), <= (__le__), >= (__ge__), != (__ne__)
 
   # ak zavolám zlomok * zlomok
   def __mul__(self, iny):
@@ -69,6 +68,36 @@ class Zlomok:
     else:
       return None
 
+  def __add__(self, iny):
+    if isinstance(iny, Zlomok):  # Zlomok + Zlomok
+        c = self.__citatel * iny.get_menovatel() + iny.get_citatel() * self.__menovatel
+        m = self.__menovatel * iny.get_menovatel()
+        return Zlomok(c, m)
+    elif isinstance(iny, int):  # Zlomok + celé číslo
+        return Zlomok(self.__citatel + iny * self.__menovatel, self.__menovatel)
+    else:
+        return None
+    
+  def __sub__(self, iny):
+    if isinstance(iny, Zlomok):
+        c = self.__citatel * iny.get_menovatel() - iny.get_citatel() * self.__menovatel
+        m = self.__menovatel * iny.get_menovatel()
+        return Zlomok(c, m)
+    elif isinstance(iny, int):
+        return Zlomok(self.__citatel - iny * self.__menovatel, self.__menovatel)
+    else:
+        return None
+
+  def __truediv__(self, iny):
+    if isinstance(iny, Zlomok):  # Delenie zlomkom
+        return Zlomok(self.__citatel * iny.get_menovatel(), self.__menovatel * iny.get_citatel())
+    elif isinstance(iny, int):  # Delenie celým číslom
+        return Zlomok(self.__citatel, self.__menovatel * iny)
+    else:
+        return None
+    
+  def __floordiv__(self, iny):
+    return self.__float__() // float(iny)
 
   # chýba __add__ __sub__ __div__
 
@@ -119,9 +148,17 @@ print("print(klon) #klon = z.kopia(): ", klon)
 sucin = z.sucin(z2)
 print("print(sucin) #sucin = z.sucin(z2): ", sucin)
 
-sucin = z * z2
+podiel = z / z2
+print("print(podiel) #podiel = z / z2: ", podiel)
 
-print("print(sucin) #sucin = z * z2: ", sucin)
+podiel_celocis = z // z2
+print("print(podiel_celocis) #podiel_celocis = z // z2: ", podiel_celocis)
+
+sucet = z + z2
+print("print(sucet) #sucet = z + z2: ", sucet)
+
+rozdiel = z - z2
+print("print(rozdiel) #rozdiel = z - z2: ", rozdiel)
 
 # porovnanie, prekryjem __eq__
 # z == z2
