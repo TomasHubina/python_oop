@@ -72,7 +72,7 @@ class SiedmaUloha:
         return [list(map(f, self.cisla)) for f in [dvojnasobok, zvysok_po_4, je_parne]]
 
 # Test PrvaUloha
-'''roky = list(map(int, input("Zadaj roky oddelené medzerou: ").split(",")))
+roky = list(map(int, input("Zadaj roky oddelené medzerou: ").split(",")))
 u1 = PrvaUloha(roky)
 print("Výsledok:", u1.usporiadaj())
 
@@ -101,7 +101,7 @@ print(u5.filtruj_a_usporiadaj())
 # Test SiestaUloha
 cisla = list(map(int, input("Šiesta úloha: ").split(" ")))
 u6 = SiestaUloha(cisla)
-print(u6.filtruj_prvocisla())'''
+print(u6.filtruj_prvocisla())
 
 # Test SiedmaUloha
 cisla = list(map(int, input("Siedma úloha: ").split()))
