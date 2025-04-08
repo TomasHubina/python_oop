@@ -85,9 +85,9 @@ class Macka(Zviera, Zvuk):
     def urob_zvuk(self):
         return self._zvuk
 
-Zviera.ID
-Zviera.ID += 1
-Zviera.ID
+#Zviera.ID
+#Zviera.ID += 1
+#Zviera.ID
 
 #z = Zviera('Zver', 20000)
 #print(z)
